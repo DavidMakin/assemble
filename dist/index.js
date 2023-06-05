@@ -103,7 +103,17 @@ function applyRepoAccess(octokit, org, repo, teams, schemas) {
                 (0, core_1.info)(`Applying ${permission} access for ${repo} to ${name}`);
                 const slug = (0, format_1.formatTeamName)(name);
                 (0, core_1.info)(`Slugname is ${slug}`);
-                yield (0, github_2.updateTeamAccess)(octokit, slug, org, repo, permission);
+                try {
+                    (0, core_1.info)('Before updateTeamAccess');
+                    yield (0, github_2.updateTeamAccess)(octokit, slug, org, repo, permission);
+                    (0, core_1.info)('After updateTeamAccess');
+                }
+                catch (err) {
+                    (0, core_1.info)('After updateTeamAccess but we have error');
+                    (0, core_1.error)(err);
+                    if (err instanceof Error)
+                        (0, core_1.setFailed)(err.message);
+                }
             }
         }
     });

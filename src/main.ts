@@ -85,7 +85,16 @@ async function applyRepoAccess (octokit: any, org: string, repo: string, teams: 
       const slug = formatTeamName(name)
 
       info(`Slugname is ${slug}`)
-      await updateTeamAccess(octokit, slug, org, repo, permission)
+
+      try {
+        info('Before updateTeamAccess')
+        await updateTeamAccess(octokit, slug, org, repo, permission)
+        info('After updateTeamAccess')
+      } catch (err: any) {
+        info('After updateTeamAccess but we have error')
+        error(err)
+        if (err instanceof Error) setFailed(err.message)
+      }
     }
   }
 }
