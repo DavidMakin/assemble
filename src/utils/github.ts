@@ -1,4 +1,3 @@
-
 import { Team, Repo, Permission, CreateTeamInput } from './types'
 
 export async function getOrgTeams (octokit: any, org: string): Promise<Team[]> {

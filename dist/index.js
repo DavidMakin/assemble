@@ -102,7 +102,7 @@ function applyRepoAccess(octokit, org, repo, teams, schemas) {
             else {
                 (0, core_1.info)(`Applying ${permission} access for ${repo} to ${name}`);
                 const slug = (0, format_1.formatTeamName)(name);
-                (0, core_1.info)(`Slugname is ${slug}`);
+                (0, core_1.info)(`team Slugname is ${slug}`);
                 try {
                     (0, core_1.info)('Before updateTeamAccess');
                     yield (0, github_2.updateTeamAccess)(octokit, slug, org, repo, permission);
