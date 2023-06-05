@@ -48,6 +48,12 @@ export async function createTeam (octokit: any, org: string, name: string, paren
 }
 
 export async function updateTeamAccess (octokit: any, teamSlug: string, org: string, repo: string, permission: Permission): Promise<void> {
+  info(`teamSlug is ${teamSlug}`)
+  info(`org is ${org}`)
+  info(`owner is ${org}`)
+  info(`repo is ${repo}`)
+  info(`permission is ${permission}`)
+
   const { data, status } = await octokit.rest.teams.addOrUpdateRepoPermissionsInOrg({
     team_slug: teamSlug,
     org,

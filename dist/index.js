@@ -299,6 +299,11 @@ function createTeam(octokit, org, name, parentId) {
 exports.createTeam = createTeam;
 function updateTeamAccess(octokit, teamSlug, org, repo, permission) {
     return __awaiter(this, void 0, void 0, function* () {
+        (0, core_1.info)(`teamSlug is ${teamSlug}`);
+        (0, core_1.info)(`org is ${org}`);
+        (0, core_1.info)(`owner is ${org}`);
+        (0, core_1.info)(`repo is ${repo}`);
+        (0, core_1.info)(`permission is ${permission}`);
         const { data, status } = yield octokit.rest.teams.addOrUpdateRepoPermissionsInOrg({
             team_slug: teamSlug,
             org,
