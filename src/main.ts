@@ -84,6 +84,7 @@ async function applyRepoAccess (octokit: any, org: string, repo: string, teams: 
       info(`Applying ${permission} access for ${repo} to ${name}`)
       const slug = formatTeamName(name)
 
+      info(`Slugname is ${slug}`)
       await updateTeamAccess(octokit, slug, org, repo, permission)
     }
   }
