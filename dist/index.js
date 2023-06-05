@@ -237,7 +237,7 @@ exports.loadConfig = loadConfig;
 /***/ }),
 
 /***/ 6863:
-/***/ (function(__unused_webpack_module, exports) {
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
 
@@ -252,6 +252,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.updateTeamAccess = exports.createTeam = exports.getOrgRepos = exports.getOrgTeams = void 0;
+const core_1 = __nccwpck_require__(2186);
 function getOrgTeams(octokit, org) {
     return __awaiter(this, void 0, void 0, function* () {
         const { data, status } = yield octokit.rest.teams.list({
@@ -305,6 +306,7 @@ function updateTeamAccess(octokit, teamSlug, org, repo, permission) {
             repo,
             permission
         });
+        (0, core_1.info)(`Status is ${status}`);
         if (status !== 204) {
             throw Error(`Failed to add repo ${repo} to team ${teamSlug}: ${status}\n${data}`);
         }

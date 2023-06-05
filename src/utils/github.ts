@@ -1,4 +1,5 @@
 import { Team, Repo, Permission, CreateTeamInput } from './types'
+import { info } from '@actions/core'
 
 export async function getOrgTeams (octokit: any, org: string): Promise<Team[]> {
   const { data, status } = await octokit.rest.teams.list({
@@ -54,6 +55,8 @@ export async function updateTeamAccess (octokit: any, teamSlug: string, org: str
     repo,
     permission
   })
+
+  info(`Status is ${status}`)
 
   if (status !== 204) {
     throw Error(`Failed to add repo ${repo} to team ${teamSlug}: ${status}\n${data}`)
